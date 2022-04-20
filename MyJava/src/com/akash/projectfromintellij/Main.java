@@ -11,9 +11,19 @@ public class Main {
         String name = scanner.next();
         System.out.println("Enter Your Age: ");
         int age = scanner.nextInt();
-        if(age>=18)
-            System.out.println("Hi "+ name + " you are "+age+" years old and you are eligible for voting.");
+        if(age>=18) {
+            System.out.println("Hi " + name + " you are " + age + " years old and you are eligible for voting.");
+        }
+        else {
+            System.out.println("Hi " + name + " you are " + age + " years old but not 18 so you are not eligible.");
+        }
+
+        System.out.println("Are you apply for voter id?");
+        boolean isApplied = scanner.hasNext();
+        if(isApplied==true)
+            System.out.println("Track your application");
         else
-            System.out.println("Hi "+name+" you are "+age+" years old but not 18 so you are not eligible.");
+            System.out.println("Apply for voter id");
+
     }
 }
