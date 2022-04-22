@@ -27,6 +27,7 @@ public class LoginForm extends JDialog{
                 String email = userText.getText();
                 String password = String.valueOf(passwordText.getPassword());
                 user = getAuthenticatedUser(email, password);
+                JOptionPane.showMessageDialog(LoginForm.this, "Successfully Logged in!");
 
                 if(user != null){
                     dispose();
@@ -91,7 +92,7 @@ public class LoginForm extends JDialog{
             System.out.println("Successful Authentication of: "+ user.name);
             System.out.println("           Email: "+ user.email);
             System.out.println("           Phone: "+ user.phone);
-            System.out.println("           address: "+ user.address);
+            System.out.println("           Address: "+ user.address);
         }
         else{
             System.out.println("Authentication Cancelled");
