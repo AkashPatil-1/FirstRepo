@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 
 public class LoginForm extends JDialog{
@@ -10,6 +12,7 @@ public class LoginForm extends JDialog{
     private JButton loginButton;
     private JButton cancelButton;
     private JPanel loginpanel;
+    private JLabel RegisterLable;
 
     public LoginForm(JFrame parent){
         super(parent);
@@ -27,7 +30,6 @@ public class LoginForm extends JDialog{
                 String email = userText.getText();
                 String password = String.valueOf(passwordText.getPassword());
                 user = getAuthenticatedUser(email, password);
-                JOptionPane.showMessageDialog(LoginForm.this, "Successfully Logged in!");
 
                 if(user != null){
                     dispose();
@@ -41,6 +43,17 @@ public class LoginForm extends JDialog{
             }
         });
 
+        RegisterLable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                RegistrationForm registrationForm = new RegistrationForm();
+                registrationForm.pack();
+                registrationForm.setLocationRelativeTo(null);
+                registrationForm.setVisible(true);
+                dispose();
+            }
+        });
 
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -48,6 +61,7 @@ public class LoginForm extends JDialog{
                 dispose();
             }
         });
+
         setVisible(true);
     }
 
@@ -89,6 +103,7 @@ public class LoginForm extends JDialog{
         LoginForm loginForm = new LoginForm(null);
         User user = loginForm.user;
         if(user != null){
+            JOptionPane.showMessageDialog(loginForm, "Successfully Logged in!");
             System.out.println("Successful Authentication of: "+ user.name);
             System.out.println("           Email: "+ user.email);
             System.out.println("           Phone: "+ user.phone);
